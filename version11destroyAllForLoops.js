@@ -127,19 +127,36 @@ var view = {
     displayTodos: function() {
         var todosUl = document.querySelector('ul');
         todosUl.innerHTML = '';
-        for (var i = 0; i < todoList.todos.length; i++) {
+        // for (var i = 0; i < todoList.todos.length; i++) {
+        //     var todoLi = document.createElement('li');
+        //     var t odo = todoList.todos[i];
+            
+        //         // this is what we are trying to accomplish
+        //         // '(x)' todoText
+        //         // var todoTextWithCompletion = '';
+        //         //if t odo.completed === true)
+        //             // (x) todoText
+        //         //else
+        //             // ( ) todoText
+        //         //todoLi.textContent = todoTextWithCompletion
+            
+        //     var todoTextWithCompletion = '';
+        //     if (t odo.completed === true) {
+        //         todoTextWithCompletion = '(x) ' + t odo.todoText;
+        //     } else {
+        //         todoTextWithCompletion = '( ) ' + t odo.todoText;
+        //     }
+            
+        //     //  making i equal to each item in the array
+        //     todoLi.id = i;
+        //     todoLi.textContent = todoTextWithCompletion;
+        //     //  append delete button to t odo(Li)
+        //     todoLi.appendChild(this.createDeleteButton());
+        //     todosUl.appendChild(todoLi);
+        // }
+        
+        todoList.todos.forEach(function(todo, position) {
             var todoLi = document.createElement('li');
-            var todo = todoList.todos[i];
-            
-                // this is what we are trying to accomplish
-                // '(x)' todoText
-                // var todoTextWithCompletion = '';
-                //if t odo.completed === true)
-                    // (x) todoText
-                //else
-                    // ( ) todoText
-                //todoLi.textContent = todoTextWithCompletion
-            
             var todoTextWithCompletion = '';
             if (todo.completed === true) {
                 todoTextWithCompletion = '(x) ' + todo.todoText;
@@ -147,13 +164,13 @@ var view = {
                 todoTextWithCompletion = '( ) ' + todo.todoText;
             }
             
-            //  making i equal to each item in the array
-            todoLi.id = i;
+            todoLi.id = position;
             todoLi.textContent = todoTextWithCompletion;
             //  append delete button to t odo(Li)
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
-        }
+            
+        }, this);
     },
     createDeleteButton: function() {
         var deleteButton = document.createElement('button');
